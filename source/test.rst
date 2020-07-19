@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to coreynote's documentation!
+Welcome to coreylin's documentation!
 =====================================
 
 .. toctree::
@@ -18,3 +18,19 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+Note
+==================
+* :ref:`python`
+
+
+.. _fig1:
+
+
+Links
+==================
+*  reStructuredText常用语法_
+
+.. _reStructuredText常用语法: https://handydocument.readthedocs.io/zh_CN/latest/rst_func.html
+
