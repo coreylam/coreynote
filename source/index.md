@@ -3,9 +3,9 @@
 
 ## Indices and tables
 
-* [索引](_build/html/genindex.html)
-* [模块索引](_build/html/py-modindex.html)
-* [搜索页面](_build/html/search.html)
+* [索引](genindex.html)
+* [模块索引](py-modindex.html)
+* [搜索页面](search.html)
 
 ## Note
 * [python](python/index.md)
