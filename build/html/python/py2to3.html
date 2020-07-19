@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="zh-CN" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>python2 切换到 python3 &mdash; coreynote 0.1 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../contents.html" class="icon icon-home" alt="Documentation Home"> coreynote
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">python2 切换到 python3</a><ul>
+<li><a class="reference internal" href="#py3-py2">py3 中不支持的py2 用法</a><ul>
+<li><a class="reference internal" href="#print-is-a-function">Print Is A Function</a></li>
+<li><a class="reference internal" href="#views-and-iterators-instead-of-lists">Views And Iterators Instead Of Lists</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#py3">py3 风格</a><ul>
+<li><a class="reference internal" href="#format">字符串格式化 format</a></li>
+<li><a class="reference internal" href="#id1">函数参数类型</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">coreynote</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../contents.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>python2 切换到 python3</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/py2to3.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="python2-python3">
+<h1>python2 切换到 python3<a class="headerlink" href="#python2-python3" title="永久链接至标题">¶</a></h1>
+<div class="section" id="py3-py2">
+<h2>py3 中不支持的py2 用法<a class="headerlink" href="#py3-py2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="print-is-a-function">
+<h3>Print Is A Function<a class="headerlink" href="#print-is-a-function" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li>py2 中 <code class="docutils literal notranslate"><span class="pre">print</span></code> 为保留的关键字， 在 py3 中，改为普通的函数。</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Old: print <span class="s2">&quot;The answer is&quot;</span>, <span class="m">2</span>*2
+New: print<span class="o">(</span><span class="s2">&quot;The answer is&quot;</span>, <span class="m">2</span>*2<span class="o">)</span>
+
+Old: print x,           <span class="c1"># Trailing comma suppresses newline</span>
+New: print<span class="o">(</span>x, <span class="nv">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="o">)</span>  <span class="c1"># Appends a space instead of a newline</span>
+
+Old: print              <span class="c1"># Prints a newline</span>
+New: print<span class="o">()</span>            <span class="c1"># You must call the function!</span>
+
+Old: print &gt;&gt;sys.stderr, <span class="s2">&quot;fatal error&quot;</span>
+New: print<span class="o">(</span><span class="s2">&quot;fatal error&quot;</span>, <span class="nv">file</span><span class="o">=</span>sys.stderr<span class="o">)</span>
+
+Old: print <span class="o">(</span>x, y<span class="o">)</span>       <span class="c1"># prints repr((x, y))</span>
+New: print<span class="o">((</span>x, y<span class="o">))</span>      <span class="c1"># Not the same as print(x, y)!</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>py2 中 <code class="docutils literal notranslate"><span class="pre">print</span></code> 支持 “softspace” 的特性，当前一个字符串换行结束时，下一个字符串不会自动添加空格， 在 py3 中，默认分隔符为空格，可通过 <code class="docutils literal notranslate"><span class="pre">sep</span></code> 参数指定</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># py2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="s2">&quot;A</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span>
+<span class="n">A</span>
+<span class="n">B</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span>
+<span class="n">A</span> <span class="n">B</span>
+
+<span class="c1"># py3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">A</span>
+ <span class="n">B</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">A</span> <span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="views-and-iterators-instead-of-lists">
+<h3>Views And Iterators Instead Of Lists<a class="headerlink" href="#views-and-iterators-instead-of-lists" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li>字典 (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) 的 <code class="docutils literal notranslate"><span class="pre">keys</span></code> 和 <code class="docutils literal notranslate"><span class="pre">values</span></code> 方法，在 py3 中返回类型为对应的视图,  而在 py2 中该返回值为 <code class="docutils literal notranslate"><span class="pre">List</span></code></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># python2</span>
+&gt;&gt;&gt; <span class="nv">d</span> <span class="o">=</span> <span class="o">{}</span>
+&gt;&gt;&gt; type<span class="o">(</span>d.keys<span class="o">())</span>
+&lt;<span class="nb">type</span> <span class="s1">&#39;list&#39;</span>&gt;
+&gt;&gt;&gt; type<span class="o">(</span>d.values<span class="o">())</span>
+&lt;<span class="nb">type</span> <span class="s1">&#39;list&#39;</span>&gt;
+
+<span class="c1"># python3</span>
+&gt;&gt;&gt; <span class="nv">d</span> <span class="o">=</span> <span class="o">{}</span>
+&gt;&gt;&gt; type<span class="o">(</span>d.keys<span class="o">())</span>
+&lt;class <span class="s1">&#39;dict_keys&#39;</span>&gt;
+&gt;&gt;&gt; type<span class="o">(</span>d.values<span class="o">())</span>
+&lt;class <span class="s1">&#39;dict_values&#39;</span>&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li>因此，python3 中 <code class="docutils literal notranslate"><span class="pre">keys</span></code> 和  <code class="docutils literal notranslate"><span class="pre">values</span></code> 的返回值不能再使用 <code class="docutils literal notranslate"><span class="pre">sort</span></code> 等列表类的方法。</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># python2</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">k</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="c1"># python3</span>
+<span class="n">k</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="py3">
+<h2>py3 风格<a class="headerlink" href="#py3" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div>这部分提供一些 python3 风格的写法，虽然对应的旧的写法依旧可以正常使用，但新的写法往往可以带来一些新的惊喜（虽然也有一些用法感觉还是旧的用着习惯），代码看起来也更有 python3 的风格， 而非用 python3 的解析器解析 python2 的代码。</div></blockquote>
+<div class="section" id="format">
+<h3>字符串格式化 format<a class="headerlink" href="#format" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="https://www.python.org/dev/peps/pep-3101"><strong>PEP 3101</strong></a>: A New Approach To String Formatting</p>
+<ul class="simple">
+<li>py3 使用 <code class="docutils literal notranslate"><span class="pre">format</span></code> 进行字符串格式化，代替 <code class="docutils literal notranslate"><span class="pre">%s</span></code> 的写法（虽然这种写法在 py3 中依旧支持）</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>函数参数类型<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 版权所有 2020, coreylin
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
