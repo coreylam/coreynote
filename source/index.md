@@ -1,2 +1,15 @@
+# Welcome to coreylin’s documentation!
 
-[test](python/index.md)
+
+## Indices and tables
+
+* [索引](_build/html/genindex.html)
+* [模块索引](_build/html/py-modindex.html)
+* [搜索页面](_build/html/search.html)
+
+## Note
+* [python](python/index.md)
+
+
+## Links
+* [reStructuredText常用语法](https://handydocument.readthedocs.io/zh_CN/latest/rst_func.html)
