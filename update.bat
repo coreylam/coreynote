@@ -1,4 +1,4 @@
-cd F:\code\github\coreynote
+cd F:\github\coreynote
 F:
 git pull
 git add .
