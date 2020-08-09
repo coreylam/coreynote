@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>TodoList</title>
+	<script type="text/javascript" src="./vue.js"></script>
+</head>
+<body>
+	<div id="root">
+		<div>
+			<input v-model="inputValue" type="" name=""/>
+			<button @click="submit">提交</button>
+			<button @click="clearInput">清除</button>
+			<div v-show="tips_on">{{tips_info}}</div>
+		</div>
+		<ul>
+			<!-- <li v-for="(item, index) of list" :key="index">{{item}}</li> -->
+			<!-- :content 定义入参content，值为item变量 -->
+			<todo-item v-for="(item, index) of list" :key="index" :content="item"></todo-item>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+
+	// 定义全局组件， 每一个组件都是vue的实例
+	Vue.component('todo-item',{
+		// 接收外部传入的content属性
+		props: ['content'],
+		template: '<li @click="hclick">{{content}}</li>',
+		methods: {
+			hclick: function(){
+				this.content=0
+			}
+
+		}
+	})
+
+	// 定义局部组件，在上面模板不能调用
+	var TodoItem = {
+		template: '{{item}}'
+	}
+
+	// 实例
+	new Vue({
+		el: "#root",
+		// 对局部组件进行注册
+		components : {
+			'todo-item2' : TodoItem
+		},
+		data: {
+			inputValue: "",
+			list: [],
+			tips_info: "请输入待办事项",
+			tips_on: false
+		},
+		methods: {
+			submit: function(){
+				this.tips_on = false
+				if (this.inputValue=="") {
+					this.tips_on = true
+					return
+				}
+				this.list.push(this.inputValue)
+				this.inputValue = ""
+			},
+			clearInput: function(){
+				this.tips_on = false
+				this.list = []
+				// this.inputValue = ""
+			}
+		}
+
+	})
+</script>
+</html>

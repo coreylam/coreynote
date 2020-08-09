@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lession3:数据，事件，方法</title>
+	<meta charset="utf-8">
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<!--  {{msg}} : 插值表达式 -->
+	<div id="root">
+		<!-- v-text: 不会转义  v-html: 会转义
+			两者都用来表示，显示变量对应的值
+			
+		-->
+		<div v-html="content"></div>
+		<div v-text="content"></div>
+		<!-- v-on: 绑定事件, 简写： @ -->
+		<div v-on:click="handleClick">{{eventtest}}</div>
+		<div @click="handleClick">{{eventtest}}</div>
+	</div>
+
+	<script>
+		new Vue({ 
+			// el: 挂载点，接管id为root的元素
+			el: "#root",
+			// 模板，
+			// template : '<h1> hello {{msg}} </h1>',
+			data: {
+				msg: "hello vue",
+				content : "<h1> hello </h1>",
+				eventtest: "click here",
+				cnt: 0
+			},
+			methods: {
+				handleClick: function(){
+					// alert(123)
+					this.content = "welcome" + this.cnt
+					this.cnt ++
+				}
+			}
+		})
+		// var dom = document.getElementById("root")
+		// dom.innerHTML = "hello vue by dom"
+	</script>
+</body>
+</html>

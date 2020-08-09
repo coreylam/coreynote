@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue test001</title>
+	<meta charset="utf-8">
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="root">{{msg}}</div>
+	<script>
+		new Vue({
+			// el: 挂载点，接管id为root的元素
+			el: "#root",
+			data: {
+				msg: "hello vue"
+			}
+		})
+		// var dom = document.getElementById("root")
+		// dom.innerHTML = "hello vue by dom"
+	</script>
+</body>
+</html>

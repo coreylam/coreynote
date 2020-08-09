@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lession4:属性与双向数据绑定</title>
+	<meta charset="utf-8">
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="root">
+		<div title="this is hello world">hello world </div>
+		<!-- 
+			title属性，等号后面的内容，为js表达式， 简写： 冒号 
+
+		-->
+		<div v-bind:title="vtitle">hello world </div>
+
+		<!-- 
+			单向绑定： 数据（vue data中的数据）决定页面（html body）显示，页面无法决定数据内容
+			双向绑定：页面和数据相互绑定， v-model
+		-->
+		<input type="" name="" v-model="vtitle2">
+		<div>Your Input: {{vtitle2}}</div>
+	</div>
+
+	<script>
+		new Vue({
+			el: "#root",
+			data:{
+				vtitle: "this is hello world",
+				vtitle2: ""
+
+			}
+		})
+	</script>
+</body>
+</html>

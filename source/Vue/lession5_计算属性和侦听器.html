@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lession5:计算属性和侦听器</title>
+	<meta charset="utf-8">
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="root">
+		姓：<input type="" name="" v-model="last_name">
+		名：<input type="" name="" v-model="first_name">
+		<div>{{full_name}}</div>
+		<div>{{count}}</div>
+
+	</div>
+
+	<script>
+		new Vue({
+			el: "#root",
+			data:{
+				first_name: "",
+				last_name: "",
+				count: 0
+			},
+			// 计算属性, 依赖属性发生变化时，重新计算，未变化，使用缓存
+			computed: {
+				full_name: function () {
+					return this.first_name + " " + this.last_name
+					// body...
+				}
+			},
+			// 检测属性的变化，当属性发生变化时，则会执行函数
+			watch:{
+				full_name: function(){
+					this.count++
+				}
+			}
+		})
+	</script>
+</body>
+</html>
